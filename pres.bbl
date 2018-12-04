@@ -1,0 +1,124 @@
+\begin{thebibliography}{10}
+
+\bibitem{Blankertz2007}
+B.~Blankertz, G.~Dornhege, M.~Krauledat, K.~R. M{\"{u}}ller, and G.~Curio,
+  ``{The non-invasive Berlin Brain-Computer Interface: Fast acquisition of
+  effective performance in untrained subjects},'' {\em NeuroImage}, vol.~37,
+  no.~2, pp.~539--550, 2007.
+
+\bibitem{Hein1993}
+S.~Hein and A.~Zakhor, ``{On the Stability of Sigma Delta Modulators},'' {\em
+  IEEE Transactions on Signal Processing}, vol.~41, no.~7, pp.~2322--2348,
+  1993.
+
+\bibitem{Schreier1997}
+R.~Schreier and G.~C. Temes, {\em {Understanding Delta-Sigma Data Converters}},
+  vol.~53.
+\newblock Wiley, 1997.
+
+\bibitem{Wong2004}
+N.~Wong and T.-s. Ng, ``{Fast detection of instability in sigma-delta
+  modulators based on unstable embedded limit cycles},'' {\em IEEE Transactions
+  on Circuits and Systems II}, vol.~51, no.~8, pp.~442--449, 2004.
+
+\bibitem{Sooch1989}
+N.~S. Sooch, ``{Gain Scaling of Oversampled Analog-to-Digital Converters},''
+  1989.
+
+\bibitem{Moussavi1994}
+S.~M. Moussavi and B.~H. Leung, ``{High-Order Single-Stage Single-Bit
+  Oversampling A/D Converter Stabilized with Local Feedback Loops},'' {\em IEEE
+  Transactions on Circuits and Systems}, vol.~41, no.~1, pp.~19--25, 1994.
+
+\bibitem{Eynde1991}
+F.~O. Eynde, G.~M. Yin, and W.~Sansen, ``{A CMOS Fourth-order 14b 500k-sample/s
+  Sigma-delta ADC Converter},'' 1991.
+
+\bibitem{Chao1990}
+K.~C.~H. Chao, S.~Nadeem, W.~L. Lee, and C.~G. Sodini, ``{A Higher Order
+  Topology for Interpolative Modulators for Oversampling A/D Converters},''
+  {\em IEEE Transactions on Circuits and Systems}, vol.~37, no.~3,
+  pp.~309--318, 1990.
+
+\bibitem{Schreier1993}
+R.~Schreier, ``{An Empirical Study of High-Order Single-Bit Delta-Sigma
+  Modulators},'' {\em IEEE Transactions on Circuits and Systems II: Analog and
+  Digital Signal Processing}, vol.~40, no.~8, pp.~461--466, 1993.
+
+\bibitem{Yang2002}
+C.-c. Yang, K.-d. Chen, W.-C. Wang, and T.-h. Kuo, ``{Transfer function design
+  of stable high-order sigma-delta modulators with root locus inside unit
+  circle},'' in {\em Proceedings. IEEE Asia-Pacific Conference on ASIC},
+  pp.~5--8, 2002.
+
+\bibitem{Kuo2006}
+T.-H. Kuo, C.-C. Yang, K.-D. Chen, and W.~C. Wang, ``{Design Method for
+  High-Order Sigma Delta Modulator Stabilized by Departure Angles Designed to
+  Keep Root Loci in Unit Circle},'' {\em IEEE Transactions on Circuits and
+  Systems II: Express Briefs}, vol.~53, no.~10, pp.~1083--1087, 2006.
+
+\bibitem{Kang2014}
+K.~Kang, {\em {Simulation, and Overload and Stability Analysis of Continuous
+  Time Sigma Delta Modulator}}.
+\newblock PhD thesis, University of Nevada, 2014.
+
+\bibitem{Risbo1994}
+L.~Risbo, {\em {Sigma Delta Modulators - Stability Analysis and Optimization}}.
+\newblock Doctor of philosophy, Technical University of Denmark, 1994.
+
+\bibitem{Anastassiou1989}
+D.~Anastassiou, ``{Error Diffusion Coding for A/D Conversion},'' {\em IEEE
+  Transactions on Circuits and Systems}, vol.~36, no.~9, pp.~1175--1186, 1989.
+
+\bibitem{Oberoi2004}
+A.~Oberoi, {\em {A Convex Optimization Approach to the Design of Multiobjective
+  Discrete Time Systems}}.
+\newblock Master of science, Rochester Institute of Technology, 2004.
+
+\bibitem{Osqui2007}
+M.~M. Osqui and A.~Megretski, ``{Semidefinite Programming in Analysis and
+  Optimization of Performance of Sigma-Delta Modulators for Low Frequencies},''
+  in {\em Proceedings of the 2007 American Control Conference}, no.~6,
+  pp.~3582--3587, 2007.
+
+\bibitem{Nagahara2012}
+M.~Nagahara and Y.~Yamamoto, ``{Frequency Domain Min-Max Optimization of
+  Noise-Shaping Delta-Sigma Modulators},'' {\em IEEE Transactions on Signal
+  Processing}, vol.~60, no.~6, pp.~1--12, 2012.
+
+\bibitem{Li2014}
+X.~Li, C.~Yu, and H.~Gao, ``{Design of delta-sigma modulators via generalized
+  Kalman-Yakubovich-Popov lemma},'' {\em Automatica}, vol.~50, no.~10,
+  pp.~2700--2708, 2014.
+
+\bibitem{Tariq2016}
+M.~R. Tariq and S.~Ohno, ``{Unified LMI-based design of $\Delta$$\Sigma$
+  modulators},'' {\em EURASIP Journal on Advances in Signal Processing},
+  vol.~2016, no.~1, p.~29, 2016.
+
+\bibitem{Iwasaki2005}
+T.~Iwasaki and S.~Hara, ``{Generalized KYP Lemma: Unified Frequency Domain
+  Inequalities with Design Applications},'' {\em IEEE Trans. Autom. Control},
+  vol.~50, no.~1, pp.~41--59, 2005.
+
+\bibitem{Masubuchi1998}
+I.~Masubuchi, A.~Ohara, and N.~Suda, ``{LMI-based controller synthesis: a
+  unified formulation and solution},'' {\em Robust and Nonlinear Control},
+  vol.~8, no.~9, pp.~669--686, 1998.
+
+\bibitem{Bu2000}
+J.~Bu and M.~Sznaier, ``{Linear matrix inequality approach to synthesizing
+  low-order suboptimal mixed l1/Hp controllers},'' {\em Automatica}, vol.~36,
+  no.~7, pp.~957--963, 2000.
+
+\bibitem{Oberoi2005}
+A.~Oberoi and J.~C. Cockburn, ``{A simplified LMI approach to l1 Controller
+  Design},'' in {\em Proceedings of the 2005 American Control Conference},
+  (Portland), pp.~1788--1792, 2005.
+
+\bibitem{Shishkin2017}
+S.~L. Shishkin, ``{Optimization under non-convex Quadratic Matrix Inequality
+  constraints with application to design of optimal sparse controller},'' {\em
+  IFAC-PapersOnLine}, vol.~50, no.~1, pp.~10754--10759, 2017.
+
+\end{thebibliography}
