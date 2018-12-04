@@ -514,7 +514,7 @@ Ideally, the goals of the method are to:
 		\cite{Nagahara2012} & $\mathcal{H}_\infty$ & FIR & GKYP & $\ell_1$ mentioned, $\mathcal{H}_\infty$ used \pause \\
 		\cite{Li2014} & $\mathcal{H}_\infty$ & IIR & GKYP & $\mathcal{H}_\infty$ \pause \\
 		\cite{Tariq2016} & $\mathcal{H}_\infty$, $\mathcal{H}_2$, $\ell_1$ & FIR & Weighting filters & $\ell_1$ mentioned, $\mathcal{H}_\infty$ used \pause \\
-		This & $\mathcal{H}_2$, $\ell_1$ & IIR & GKYP & $\mathcal{H}_\infty$, root locus, $\mathcal{H}_2$, $\ell_1$ \\
+		This & $\mathcal{H}_\infty$, $\mathcal{H}_2$, $\ell_1$ & IIR & GKYP & $\mathcal{H}_\infty$, root locus, $\mathcal{H}_2$, $\ell_1$ \\
 		\bottomrule
 	\end{tabular}
 	\begin{tablenotes}
@@ -940,7 +940,28 @@ With this reduction, attempted the following:
 	\item Development of an algorithm that unites sigma delta modulator design using $\mathcal{H}_\infty$, $\mathcal{H}_2$, and $\ell_1$ stability criteria with the GKYP performance goal supporting both FIR and IIR filters. \pause
 	\item Extending the LMI system from \cite{Li2014} to be compatible with other channels of the augmented system. \pause
 	\item Modelling the quantizer gain as an uncertainty and using optimization to enforce stability for a range of quantizer gains. \pause
-	\item Presenting a proof-of-concept of using this work to directly design continuous-time loop filters. \pause
+	\item Presenting a proof-of-concept of using this work to directly design continuous-time loop filters.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Limitations}
+
+\begin{itemize}
+	\item The influence of integrator state saturation is not captured by the model. \pause
+	\item LMI expressions are not feasible for loop filters with poles or zeros exactly on the unit circle. \pause
+	\item Convergence is dependent on choice of optimization parameters and initial conditions. \pause
+	\item It can be difficult to avoid pole-zero cancellations with high order designs.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Future Work}
+
+\begin{itemize}
+	\item Incorporate constraints on transfer function coefficients for ease of implementation. \pause
+	\item Explore implementation of a sigma delta DAC designed using this method on an FPGA. \pause
+	\item Find better optimization targets for continuous-time modulator design.
 \end{itemize}
 
 \end{frame}
@@ -955,7 +976,8 @@ With this reduction, attempted the following:
 \begin{frame}[allowframebreaks]{References}
 
 	\bibliographystyle{ieeetr}
-	\bibliography{/Users/brett/Documents/Mendeley_Desktop/BibTeX/library}
+	\bibliography{C:/Users/bhannigan/Documents/Mendel\string~1/library} % Windows
+	%\bibliography{/Users/brett/Documents/Mendeley_Desktop/BibTeX/library} % OS X
 
 \end{frame}
 
@@ -1100,27 +1122,6 @@ With this reduction, attempted the following:
 	\includegraphics[height=6cm]{opt-convergence}
 	\caption{An example of the dependence of the iterative optimization scheme on initial conditions.}
 \end{figure}
-
-\end{frame}
-
-\begin{frame}{Limitations}
-
-\begin{itemize}
-	\item The influence of integrator state saturation is not captured by the model.
-	\item LMI expressions are not feasible for loop filters with poles or zeros exactly on the unit circle.
-	\item Convergence is dependent on choice of optimization parameters and initial conditions.
-	\item It can be difficult to avoid pole-zero cancellations with high order designs.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}{Future Work}
-
-\begin{itemize}
-	\item Incorporate constraints on transfer function coefficients for ease of implementation.
-	\item Explore implementation of a sigma delta DAC designed using this method on an FPGA.
-	\item Find better optimization targets for continuous-time modulator design.
-\end{itemize}
 
 \end{frame}
 

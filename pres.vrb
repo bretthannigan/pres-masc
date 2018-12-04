@@ -4,7 +4,7 @@
 ^^I\centering
 ^^I% General Sigma Delta Modulator
 ^^I\begin{tikzpicture}[ampersand replacement=\&,scale=0.75, every node/.style={scale=0.75}]
-^^I
+
 ^^I^^I% Place nodes using a matrix
 ^^I^^I\matrix (m1) [row sep=2.5mm, column sep=5mm]
 ^^I^^I{
@@ -24,7 +24,7 @@
 ^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m26) {};^^I^^I^^I^^I^^I^^I^^I\& \\
 ^^I^^I^^I%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ^^I^^I};
-^^I
+
 ^^I^^I\begin{pgfonlayer}{bg}
 ^^I^^I^^I\draw[->]^^I^^I($(m14) + (-0.5,-0.5)$) -- ($(m14) + (0.5,0.5)$);
 ^^I^^I\end{pgfonlayer}
@@ -36,7 +36,7 @@
 ^^I^^I\draw[dspline] ^^I(m25) -- (m22);
 ^^I^^I\draw[dspconn]^^I(m22) -- (m12);
 ^^I^^I\draw[dspconn] ^^I(m12) -- node[midway,above] {$e$} (m13);
-^^I^^I
+
 ^^I^^I\end{tikzpicture}
 ^^I\caption{The sigma delta loop with the quantizer represented as an uncertain gain.}
 \end{figure}
@@ -45,7 +45,7 @@
 ^^I\centering
 ^^I% Augmented Plant
 ^^I\begin{tikzpicture}[ampersand replacement=\&,scale=0.75, every node/.style={scale=0.75}]
-^^I
+
 ^^I^^I% Place nodes using a matrix
 ^^I^^I\matrix (m1) [row sep=2.5mm, column sep=5mm]
 ^^I^^I{
@@ -70,9 +70,9 @@
 ^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m26) {};^^I^^I^^I^^I\& \\
 ^^I^^I^^I%-----------------------------------------------------------------------------------------------
 ^^I^^I};
-^^I^^I
+
 ^^I^^I%\node[draw,inner xsep=15pt,inner ysep=10pt,dashed,fit={($(m10) + (0,0.6)$) ($(m16)+(0.85, -1)$)},label={[align=center]below:Augmented Plant $G(\lambda)$}] {};
-^^I
+
 ^^I^^I\draw[dspconn] (m10) to node[midway,above] {$e$} (m11);
 ^^I^^I\draw[dspconn] (m11) to node[midway,above] {$u$} (m13);
 ^^I^^I\node[coordinate] at ($(m15) + (-20pt,-5pt)$) (m15-sw) {};
@@ -83,7 +83,7 @@
 ^^I^^I\node[coordinate] at ($(m15-ne) + (10pt,0)$) (m15-ne-corner) {};
 ^^I^^I\node[coordinate] at (m15-nw-corner |- m05.west) (m05-w-corner) {};
 ^^I^^I\node[coordinate] at (m15-ne-corner |- m05.east) (m05-e-corner) {};
-^^I^^I
+
 ^^I^^I\draw[dspconn] (m13) -- (m15-sw);
 ^^I^^I\draw[dspconn] (m15-se) -- (m17);
 ^^I^^I\draw[dspconn] (m15-nw-corner) -- (m15-nw);
@@ -97,7 +97,7 @@
 ^^I^^I\draw[dspconn] (m21) -- (m11);
 ^^I^^I%\draw[black!20, ->, out=-90, in=-90, looseness=0.6] ($(m10)+(-0.35, -0.25)$) to node[below, xshift=-22pt] {$STF$} ($(m17)+(0.35, -0.25)$);
 ^^I^^I%\draw[RedOrange, ->, out=90, in=180, looseness=1] ($(m10)+(-0.35, 0.25)$) to node[left, xshift=-2pt,yshift=2pt] {$NTF$} ($(m02)+(-0.35, 0.35)$);
-^^I^^I
+
 ^^I\end{tikzpicture}
 ^^I\caption{The linearized block diagram with the quantizer replaced by a multiplicative uncertainty extracted via LFT.}
 \end{figure}
