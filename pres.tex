@@ -1,3 +1,4 @@
+%!TEX TS-program = XeLaTeX
 \documentclass[10pt,usenames,dvipsnames]{beamer}
 
 \usetheme[progressbar=frametitle]{metropolis}
@@ -146,10 +147,11 @@
 \begin{block}{Primary Objective}
 	To develop a systematic method of design for sigma delta A/D converters for the recording of bio-signals.
 \end{block}
+\pause
 Ideally, the goals of the method are to:
 \begin{itemize}
-	\item Model the nonlinear system accurately in a way that allows analysis of existing designs.
-	\item Reduce dependence on simulation.
+	\item Model the nonlinear system accurately in a way that allows analysis of existing designs. \pause
+	\item Reduce dependence on simulation. \pause
 	\item Provide a way to design guaranteed stable sigma delta modulators in a way that minimizes conservatism.
 \end{itemize}
 
@@ -157,6 +159,7 @@ Ideally, the goals of the method are to:
 
 \begin{frame}{Principles of Sigma Delta Modulation}
 
+\onslide<3>{
 \begin{figure}
 \noindent\makebox[\textwidth]{
 	\centering
@@ -209,18 +212,22 @@ Ideally, the goals of the method are to:
 	\end{tikzpicture}}
 	\caption{An example EEG signal \cite{Blankertz2007} digitized to 5 bits with na\"{i}ve quantization (left), 10 times oversampled quantization (middle), and first-order sigma delta modulation (right).}
 \end{figure}
+}
 \metroset{block=fill}
+\onslide<1->{
 \begin{block}{Oversampling}
 	Sampling a signal at a rate higher than what the Nyquist-Shannon sampling theorem would dictate.
-\end{block}
+\end{block}}
+\onslide<2->{
 \begin{block}{Noise Shaping}
 	The use of a filter to push quantization noise out of the signal band by wrapping the quantizer in a feedback loop.
-\end{block}
+\end{block}}
 
 \end{frame}
 
 \begin{frame}{Basic Structure of a Sigma Delta Modulator}
 
+\onslide<1->{
 \begin{figure}
 \noindent\makebox[\textwidth]{
 	\centering
@@ -297,7 +304,8 @@ Ideally, the goals of the method are to:
 
 	\end{tikzpicture}}
 	\caption{A simplified block diagram of a discrete-time sigma delta A/D converter.}
-\end{figure}
+\end{figure}}
+\onslide<2->{
 \vspace{-0.75cm}
 \begin{figure}
 \noindent\makebox[\textwidth]{
@@ -377,17 +385,17 @@ Ideally, the goals of the method are to:
 	\end{tikzpicture}}
 	\vspace{-1cm}
 	\caption{A simplified block diagram of a continuous-time sigma delta A/D converter.}
-\end{figure}
+\end{figure}}
 
 \end{frame}
 
 \begin{frame}{Design of the Loop Filter}
 	The nonlinear quantizer in the forward path makes stability analysis difficult.
-	Loop filter design is commonly done in one of several ways:
+	Loop filter design is commonly done in one of several ways: \pause
 	\begin{itemize}
-		\item Pure integrator -- DC-stable for low order loops \cite{Hein1993}.
-		\item Prototype NTF -- noise rejection of linear model chosen from a family of filters \cite[Appx. B]{Schreier1997}.
-		\item Optimization-based approaches -- wide range of techniques.
+		\item Pure integrator -- DC-stable for low order loops \cite{Hein1993}. \pause
+		\item Prototype NTF -- noise rejection of linear model chosen from a family of filters \cite[Appx. B]{Schreier1997}. \pause
+		\item Optimization-based approaches -- wide range of techniques. \pause
 	\end{itemize}
 	The design process often relies on extensive simulation to confirm that stability is likely during normal operation and the circuit may include complicated instability detection and recovery mechanisms \cite{Wong2004, Sooch1989, Moussavi1994, Eynde1991}.
 \end{frame}
@@ -403,12 +411,12 @@ Ideally, the goals of the method are to:
 		||NTF(z)||_\infty \lessapprox 2
 	\end{equation*}
 \end{block}
-
+\pause
 \begin{itemize}
-	\item Rule-of-thumb developed empirically from observations on a 4th order DT modulator \cite{Chao1990}.
-	\item Generally conservative for 2nd order loops, approximately correct for 3rd order, and inadequate for higher order \cite{Schreier1993}.
-	\item Common in existing design tools \cite[Appx. B]{Schreier1997}.
-	\item Easy to apply as a control optimization problem.
+	\item Rule-of-thumb developed empirically from observations on a 4th order DT modulator \cite{Chao1990}. \pause
+	\item Generally conservative for 2nd order loops, approximately correct for 3rd order, and inadequate for higher order \cite{Schreier1993}. \pause
+	\item Common in existing design tools \cite[Appx. B]{Schreier1997}. \pause
+	\item Easy to apply as a control optimization problem.\pause
 	\item No straightforward relationship between maximum stable input and the Lee criterion value.
 \end{itemize}
 
@@ -423,9 +431,9 @@ Ideally, the goals of the method are to:
 		|NTF(z, K)| \leq 1 \quad \forall K \in [k_l, k_h]
 	\end{equation*}
 \end{block}
-
+\pause
 \begin{itemize}
-	\item Has been used to produce designs by examining pole and zero departure angles \cite{Yang2002, Kuo2006, Kang2014}.
+	\item Has been used to produce designs by examining pole and zero departure angles \cite{Yang2002, Kuo2006, Kang2014}. \pause
 	\item Can predict the maximum stable input amplitude.
 \end{itemize}
 
@@ -440,10 +448,10 @@ Ideally, the goals of the method are to:
 		||NTF(z)||_2^2 \leq f(r,u)
 	\end{equation*}
 \end{block}
-
+\pause
 \begin{itemize}
-	\item Splits signals into DC baseline with superposition of the AC component, uses additional degrees of freedom to enforce that the quantization error is uncorrelated with quantizer input \cite{Risbo1994}.
-	\item A good approximation as long as the chosen quantizer input PDF is accurate.
+	\item Splits signals into DC baseline with superposition of the AC component, uses additional degrees of freedom to enforce that the quantization error is uncorrelated with quantizer input \cite{Risbo1994}. \pause
+	\item A good approximation as long as the chosen quantizer input PDF is accurate. \pause
 	\item Can predict the maximum stable input amplitude.
 \end{itemize}
 
@@ -458,10 +466,10 @@ Ideally, the goals of the method are to:
 		\min_K ||ntf_K[n]||_1 \leq 3 - ||r||_\infty
 	\end{equation*}
 \end{block}
-
+\pause
 \begin{itemize}
-	\item Sufficient criterion for BIBO stability \cite{Anastassiou1989}.
-	\item Uses the worst-case gain of the filter, usually resulting in very conservative designs \cite{Risbo1994}.
+	\item Sufficient criterion for BIBO stability \cite{Anastassiou1989}. \pause
+	\item Uses the worst-case gain of the filter, usually resulting in very conservative designs \cite{Risbo1994}. \pause
 	\item Determines the maximum stable input amplitude.
 \end{itemize}
 
@@ -475,12 +483,12 @@ Ideally, the goals of the method are to:
 		\min ||NTF(z)||_\infty \quad z \in [j\omega_l, j\omega_h]
 	\end{equation*}
 \end{block}
-
+\pause
 \begin{itemize}
-	\item Want to maximize the quantization noise rejection in the signal band.
+	\item Want to maximize the quantization noise rejection in the signal band. \pause
 	\item Two main options:
 	\begin{itemize}
-		\item Addition of weighting filters to the NTF channel, then use $\mathcal{H}_\infty$ control techniques.
+		\item Addition of weighting filters to the NTF channel, then use $\mathcal{H}_\infty$ control techniques. \pause
 		\item Apply the Generalized KYP lemma which provides a link between a finite-frequency inequality and a set of LMIs.
 	\end{itemize}
 \end{itemize}
@@ -501,11 +509,11 @@ Ideally, the goals of the method are to:
 		\toprule
 		\textbf{Ref.} & \textbf{Optimized norms} & \textbf{NTF Type} & \textbf{Performance goal} & \textbf{Stability criteria} \\
 		\midrule
-		\cite{Oberoi2004} & $\mathcal{H}_\infty$, $\mathcal{H}_2$, $\ell_1$ & IIR &  Weighting filters & $\mathcal{H}_\infty$, $\mathcal{H}_2$ \\ 
-		\cite{Osqui2007} & $\mathcal{H}_\infty$ & IIR\tnote{1} & GKYP & Not reported \\
-		\cite{Nagahara2012} & $\mathcal{H}_\infty$ & FIR & GKYP & $\ell_1$ mentioned, $\mathcal{H}_\infty$ used \\
-		\cite{Li2014} & $\mathcal{H}_\infty$ & IIR & GKYP & $\mathcal{H}_\infty$ \\
-		\cite{Tariq2016} & $\mathcal{H}_\infty$, $\mathcal{H}_2$, $\ell_1$ & FIR & Weighting filters & $\ell_1$ mentioned, $\mathcal{H}_\infty$ used \\
+		\cite{Oberoi2004} & $\mathcal{H}_\infty$, $\mathcal{H}_2$, $\ell_1$ & IIR &  Weighting filters & $\mathcal{H}_\infty$, $\mathcal{H}_2$ \pause \\ 
+		\cite{Osqui2007} & $\mathcal{H}_\infty$ & IIR\tnote{1} & GKYP & Not reported \pause \\
+		\cite{Nagahara2012} & $\mathcal{H}_\infty$ & FIR & GKYP & $\ell_1$ mentioned, $\mathcal{H}_\infty$ used \pause \\
+		\cite{Li2014} & $\mathcal{H}_\infty$ & IIR & GKYP & $\mathcal{H}_\infty$ \pause \\
+		\cite{Tariq2016} & $\mathcal{H}_\infty$, $\mathcal{H}_2$, $\ell_1$ & FIR & Weighting filters & $\ell_1$ mentioned, $\mathcal{H}_\infty$ used \pause \\
 		This & $\mathcal{H}_2$, $\ell_1$ & IIR & GKYP & $\mathcal{H}_\infty$, root locus, $\mathcal{H}_2$, $\ell_1$ \\
 		\bottomrule
 	\end{tabular}
@@ -589,7 +597,7 @@ Ideally, the goals of the method are to:
 		
 	\end{tikzpicture}
 	\caption{The augmented system model with channels of interest extracted.}
-\end{figure}
+\end{figure} \pause
 \begin{equation*}
 	G:
 	\begin{bmatrix}
@@ -618,9 +626,9 @@ Ideally, the goals of the method are to:
 
 \begin{frame}{Semidefinite Program}
 
-LMIs exist for the GKYP Lemma \cite{Iwasaki2005}, $\mathcal{H}_2$ norm \cite{Masubuchi1998}, and $\star$-norm \cite{Bu2000, Oberoi2005}, an upper bound of the $\ell_1$ norm, but there are some caveats:
+LMIs exist for the GKYP Lemma \cite{Iwasaki2005}, $\mathcal{H}_2$ norm \cite{Masubuchi1998}, and $\star$-norm \cite{Bu2000, Oberoi2005}, an upper bound of the $\ell_1$ norm, but there are some caveats: \pause
 \begin{itemize}
-	\item LMIs are non-convex for IIR filters because there is a product term of the pole coefficients.
+	\item LMIs are non-convex for IIR filters because there is a product term of the pole coefficients. \pause
 	\item The $\star$-norm LMI has a non-convex scalar term.
 \end{itemize}
 
@@ -635,12 +643,12 @@ The authors in \cite{Li2014} showed how to manipulate the GKYP LMI by assuming t
 		\textcolor{Red}{aa^T} & a \\
 		a^T & 1
 	\end{bmatrix} \geq 0
-\end{equation*}
+\end{equation*} \pause
 With this reduction, attempted the following:
 \begin{itemize}
-	\item Use of general non-convex solver.
-	\item Use of rank-constrained LMI solver.
-	\item Applying Shor's relaxation to linearize the problem.
+	\item Use of general non-convex solver. \pause
+	\item Use of rank-constrained LMI solver. \pause
+	\item Applying Shor's relaxation to linearize the problem. \pause
 	\item \textcolor{Violet}{Performing an iterative method \cite{Shishkin2017}.}
 \end{itemize}
 
@@ -929,32 +937,20 @@ With this reduction, attempted the following:
 \begin{frame}{Contributions}
 
 \begin{itemize}
-	\item Development of an algorithm that unites sigma delta modulator design using $\mathcal{H}_\infty$, $\mathcal{H}_2$, and $\ell_1$ stability criteria with the GKYP performance goal supporting both FIR and IIR filters.
-	\item Extending the LMI system from \cite{Li2014} to be compatible with other channels of the augmented system.
-	\item Modelling the quantizer gain as an uncertainty and using optimization to enforce stability for a range of quantizer gains.
-	\item Presenting a proof-of-concept of using this work to directly design continuous-time loop filters.
+	\item Development of an algorithm that unites sigma delta modulator design using $\mathcal{H}_\infty$, $\mathcal{H}_2$, and $\ell_1$ stability criteria with the GKYP performance goal supporting both FIR and IIR filters. \pause
+	\item Extending the LMI system from \cite{Li2014} to be compatible with other channels of the augmented system. \pause
+	\item Modelling the quantizer gain as an uncertainty and using optimization to enforce stability for a range of quantizer gains. \pause
+	\item Presenting a proof-of-concept of using this work to directly design continuous-time loop filters. \pause
 \end{itemize}
 
 \end{frame}
 
-{\setbeamercolor{palette primary}{fg=black, bg=yellow}
+{\setbeamercolor{palette primary}{fg=white, bg=ubcBlue}
+\setbeamercolor{normal text}{fg=white}
 \begin{frame}[standout]
-  Questions?
+	Questions?
 \end{frame}
 }
-
-%\appendix
-%
-%\begin{frame}[fragile]{Backup slides}
-%  Sometimes, it is useful to add slides at the end of your presentation to
-%  refer to during audience questions.
-%I
-%  The best way to do this is to include the \verb|appendixnumberbeamer|
-%  package in your preamble and call \verb|\appendix| before your backup slides.
-%
-%  \themename will automatically turn off slide numbering and progress bars for
-%  slides in the appendix.
-%\end{frame}
 
 \begin{frame}[allowframebreaks]{References}
 
@@ -963,5 +959,169 @@ With this reduction, attempted the following:
 
 \end{frame}
 
-\end{document}
+\appendix
 
+\begin{frame}[fragile]{Modelling Uncertain Quantizer Gain}
+
+\begin{figure}
+	\centering
+	% General Sigma Delta Modulator
+	\begin{tikzpicture}[ampersand replacement=\&,scale=0.75, every node/.style={scale=0.75}]
+	
+		% Place nodes using a matrix
+		\matrix (m1) [row sep=2.5mm, column sep=5mm]
+		{
+					%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			\node[dspnodeopen,dsp/label=left]								(m11) {$r$};							\&
+			\node[dspadder,label={below left:$-$}]							(m12) {};							\&
+			\node[dspfilter]											(m13) {$H(z)$};					\&
+			\node[dspgain,fill=white,label={[align=center,yshift=-5]below:Linearized\\Gain}]	(m14) {$K$};							\&
+			\node[dspnodefull]											(m15) {};							\&
+			\node[dspnodeopen,dsp/label=right]								(m16) {$y$};							\& \\
+			%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+			\node[coordinate]											(m21) {};							\&
+			\node[coordinate]											(m22) {};							\& 
+			\node[coordinate]											(m23) {};							\& 
+			\node[coordinate]											(m24) {};							\& 
+			\node[coordinate]											(m25) {};							\& 
+			\node[coordinate]											(m26) {};							\& \\
+			%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+		};
+	
+		\begin{pgfonlayer}{bg}
+			\draw[->]		($(m14) + (-0.5,-0.5)$) -- ($(m14) + (0.5,0.5)$);
+		\end{pgfonlayer}
+		\draw[dspconn] 	(m11) -- (m12);
+		\draw[dspconn] 	(m12) -- (m13);
+		\draw[dspconn] 	(m13) -- node[midway,above] {$u$} (m14);
+		\draw[dspconn]	(m14) -- (m16);
+		\draw[dspline] 	(m15) -- (m25);
+		\draw[dspline] 	(m25) -- (m22);
+		\draw[dspconn]	(m22) -- (m12);
+		\draw[dspconn] 	(m12) -- node[midway,above] {$e$} (m13);
+		
+		\end{tikzpicture}
+	\caption{The sigma delta loop with the quantizer represented as an uncertain gain.}
+\end{figure}
+\vspace{-0.5cm}
+\begin{figure}[h]
+	\centering
+	% Augmented Plant
+	\begin{tikzpicture}[ampersand replacement=\&,scale=0.75, every node/.style={scale=0.75}]
+	
+		% Place nodes using a matrix
+		\matrix (m1) [row sep=2.5mm, column sep=5mm]
+		{
+			%-----------------------------------------------------------------------------------------------
+			\node[coordinate]					(m00) {};				\&
+			\node[coordinate]					(m01) {};				\&
+			\node[coordinate]					(m03) {};				\&
+			\node[dspsquare]					(m05) {$\Delta$};			\&
+			\node[coordinate]					(m06) {};				\& \\
+			%-----------------------------------------------------------------------------------------------
+			\node[dspnodeopen,dsp/label=left]		(m10) {$r$};				\&
+			\node[dspadder,label={below left:$-$}]	(m11) {};				\&
+			\node[dspfilter]					(m13) {$H(z)$};			\&
+			\node[dspfilter,yshift=5]				(m15) {$M$};				\&
+			\node[dspnodefull]					(m16) {};				\&
+			\node[dspnodeopen,dsp/label=right]		(m17) {$y$};				\& \\
+			%-----------------------------------------------------------------------------------------------
+			\node[coordinate]					(m20) {};				\&
+			\node[coordinate]					(m21) {};				\&
+			\node[coordinate]					(m23) {};				\& 
+			\node[coordinate]					(m25) {};				\& 
+			\node[coordinate]					(m26) {};				\& \\
+			%-----------------------------------------------------------------------------------------------
+		};
+		
+		%\node[draw,inner xsep=15pt,inner ysep=10pt,dashed,fit={($(m10) + (0,0.6)$) ($(m16)+(0.85, -1)$)},label={[align=center]below:Augmented Plant $G(\lambda)$}] {};
+	
+		\draw[dspconn] (m10) to node[midway,above] {$e$} (m11);
+		\draw[dspconn] (m11) to node[midway,above] {$u$} (m13);
+		\node[coordinate] at ($(m15) + (-20pt,-5pt)$) (m15-sw) {};
+		\node[coordinate] at ($(m15) + (20pt,-5pt)$) (m15-se) {};
+		\node[coordinate] at ($(m15) + (-20pt,5pt)$) (m15-nw) {};
+		\node[coordinate] at ($(m15) + (20pt,5pt)$) (m15-ne) {};
+		\node[coordinate] at ($(m15-nw) + (-10pt,0)$) (m15-nw-corner) {};
+		\node[coordinate] at ($(m15-ne) + (10pt,0)$) (m15-ne-corner) {};
+		\node[coordinate] at (m15-nw-corner |- m05.west) (m05-w-corner) {};
+		\node[coordinate] at (m15-ne-corner |- m05.east) (m05-e-corner) {};
+		
+		\draw[dspconn] (m13) -- (m15-sw);
+		\draw[dspconn] (m15-se) -- (m17);
+		\draw[dspconn] (m15-nw-corner) -- (m15-nw);
+		\draw[dspline] (m15-nw-corner) -- (m05-w-corner);
+		\draw[dspline] (m05) -- (m05-w-corner);
+		\draw[dspline] (m15-ne-corner) -- (m15-ne);
+		\draw[dspline] (m15-ne-corner) -- (m05-e-corner);
+		\draw[dspconn] (m05-e-corner) -- (m05);
+		\draw[dspline] (m16) -- (m26);
+		\draw[dspline] (m26) -- (m21);
+		\draw[dspconn] (m21) -- (m11);
+		%\draw[black!20, ->, out=-90, in=-90, looseness=0.6] ($(m10)+(-0.35, -0.25)$) to node[below, xshift=-22pt] {$STF$} ($(m17)+(0.35, -0.25)$);
+		%\draw[RedOrange, ->, out=90, in=180, looseness=1] ($(m10)+(-0.35, 0.25)$) to node[left, xshift=-2pt,yshift=2pt] {$NTF$} ($(m02)+(-0.35, 0.35)$);
+		
+	\end{tikzpicture}
+	\caption{The linearized block diagram with the quantizer replaced by a multiplicative uncertainty extracted via LFT.}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Iterative Convexification Procedure}
+	\begin{itemize}
+		\item Find feasible initial condition $a_0$.
+		\item Separate out non-convex term:
+		\begin{multline*}
+			\begin{bmatrix}
+				aa^T & a \\
+				a^T & 0 \\
+			\end{bmatrix} = 
+			\begin{bmatrix}
+				(a_0 + a_1)(a_0 + a_1)^T - a_1a_1^T  & a_0 + a_1 \\
+				(a_0 + a_1)^T & 0
+			\end{bmatrix} = \\
+			\begin{bmatrix}
+				(a_0a_0^T + a_0a_1^T + a_1a_0^T & a_0 + a_1 \\
+				(a_0 + a_1)^T & 0
+			\end{bmatrix}		
+		\end{multline*}
+		\item Using known $a_0$, solve the non-convex problem in $a_1$.
+		\item Repeat process until termination criteria met.
+		\begin{equation*}
+			a = a_0 + a_1
+		\end{equation*}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Convergence}
+
+\begin{figure}
+	\centering
+	\includegraphics[height=6cm]{opt-convergence}
+	\caption{An example of the dependence of the iterative optimization scheme on initial conditions.}
+\end{figure}
+
+\end{frame}
+
+\begin{frame}{Limitations}
+
+\begin{itemize}
+	\item The influence of integrator state saturation is not captured by the model.
+	\item LMI expressions are not feasible for loop filters with poles or zeros exactly on the unit circle.
+	\item Convergence is dependent on choice of optimization parameters and initial conditions.
+	\item It can be difficult to avoid pole-zero cancellations with high order designs.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{Future Work}
+
+\begin{itemize}
+	\item Incorporate constraints on transfer function coefficients for ease of implementation.
+	\item Explore implementation of a sigma delta DAC designed using this method on an FPGA.
+	\item Find better optimization targets for continuous-time modulator design.
+\end{itemize}
+
+\end{frame}
+
+\end{document}

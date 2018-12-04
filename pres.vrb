@@ -1,16 +1,104 @@
-\frametitle{Project Objectives}
+\frametitle{Modelling Uncertain Quantizer Gain}
 
-\metroset{block=fill}
-\begin{center}
-^^I\includegraphics[width=6cm]{logos.png}
-\end{center}
-\begin{block}{Primary Objective}
-^^ITo develop a systematic method of design for sigma delta A/D converters for the recording of bio-signals.
-\end{block}
-Ideally, the goals of the method are to:
-\begin{itemize}
-^^I\item Model the nonlinear system accurately in a way that allows analysis of existing designs.
-^^I\item Reduce dependence on simulation.
-^^I\item Provide a way to design guaranteed stable sigma delta modulators in a way that minimizes conservatism.
-\end{itemize}
+\begin{figure}
+^^I\centering
+^^I% General Sigma Delta Modulator
+^^I\begin{tikzpicture}[ampersand replacement=\&,scale=0.75, every node/.style={scale=0.75}]
+^^I
+^^I^^I% Place nodes using a matrix
+^^I^^I\matrix (m1) [row sep=2.5mm, column sep=5mm]
+^^I^^I{
+^^I^^I^^I^^I^^I%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+^^I^^I^^I\node[dspnodeopen,dsp/label=left]^^I^^I^^I^^I^^I^^I^^I^^I(m11) {$r$};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspadder,label={below left:$-$}]^^I^^I^^I^^I^^I^^I^^I(m12) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspfilter]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m13) {$H(z)$};^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspgain,fill=white,label={[align=center,yshift=-5]below:Linearized\\Gain}]^^I(m14) {$K$};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspnodefull]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m15) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspnodeopen,dsp/label=right]^^I^^I^^I^^I^^I^^I^^I^^I(m16) {$y$};^^I^^I^^I^^I^^I^^I^^I\& \\
+^^I^^I^^I%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m21) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m22) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m23) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m24) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m25) {};^^I^^I^^I^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I^^I(m26) {};^^I^^I^^I^^I^^I^^I^^I\& \\
+^^I^^I^^I%-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+^^I^^I};
+^^I
+^^I^^I\begin{pgfonlayer}{bg}
+^^I^^I^^I\draw[->]^^I^^I($(m14) + (-0.5,-0.5)$) -- ($(m14) + (0.5,0.5)$);
+^^I^^I\end{pgfonlayer}
+^^I^^I\draw[dspconn] ^^I(m11) -- (m12);
+^^I^^I\draw[dspconn] ^^I(m12) -- (m13);
+^^I^^I\draw[dspconn] ^^I(m13) -- node[midway,above] {$u$} (m14);
+^^I^^I\draw[dspconn]^^I(m14) -- (m16);
+^^I^^I\draw[dspline] ^^I(m15) -- (m25);
+^^I^^I\draw[dspline] ^^I(m25) -- (m22);
+^^I^^I\draw[dspconn]^^I(m22) -- (m12);
+^^I^^I\draw[dspconn] ^^I(m12) -- node[midway,above] {$e$} (m13);
+^^I^^I
+^^I^^I\end{tikzpicture}
+^^I\caption{The sigma delta loop with the quantizer represented as an uncertain gain.}
+\end{figure}
+\vspace{-0.5cm}
+\begin{figure}[h]
+^^I\centering
+^^I% Augmented Plant
+^^I\begin{tikzpicture}[ampersand replacement=\&,scale=0.75, every node/.style={scale=0.75}]
+^^I
+^^I^^I% Place nodes using a matrix
+^^I^^I\matrix (m1) [row sep=2.5mm, column sep=5mm]
+^^I^^I{
+^^I^^I^^I%-----------------------------------------------------------------------------------------------
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m00) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m01) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m03) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspsquare]^^I^^I^^I^^I^^I(m05) {$\Delta$};^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m06) {};^^I^^I^^I^^I\& \\
+^^I^^I^^I%-----------------------------------------------------------------------------------------------
+^^I^^I^^I\node[dspnodeopen,dsp/label=left]^^I^^I(m10) {$r$};^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspadder,label={below left:$-$}]^^I(m11) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspfilter]^^I^^I^^I^^I^^I(m13) {$H(z)$};^^I^^I^^I\&
+^^I^^I^^I\node[dspfilter,yshift=5]^^I^^I^^I^^I(m15) {$M$};^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspnodefull]^^I^^I^^I^^I^^I(m16) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[dspnodeopen,dsp/label=right]^^I^^I(m17) {$y$};^^I^^I^^I^^I\& \\
+^^I^^I^^I%-----------------------------------------------------------------------------------------------
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m20) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m21) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m23) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m25) {};^^I^^I^^I^^I\&
+^^I^^I^^I\node[coordinate]^^I^^I^^I^^I^^I(m26) {};^^I^^I^^I^^I\& \\
+^^I^^I^^I%-----------------------------------------------------------------------------------------------
+^^I^^I};
+^^I^^I
+^^I^^I%\node[draw,inner xsep=15pt,inner ysep=10pt,dashed,fit={($(m10) + (0,0.6)$) ($(m16)+(0.85, -1)$)},label={[align=center]below:Augmented Plant $G(\lambda)$}] {};
+^^I
+^^I^^I\draw[dspconn] (m10) to node[midway,above] {$e$} (m11);
+^^I^^I\draw[dspconn] (m11) to node[midway,above] {$u$} (m13);
+^^I^^I\node[coordinate] at ($(m15) + (-20pt,-5pt)$) (m15-sw) {};
+^^I^^I\node[coordinate] at ($(m15) + (20pt,-5pt)$) (m15-se) {};
+^^I^^I\node[coordinate] at ($(m15) + (-20pt,5pt)$) (m15-nw) {};
+^^I^^I\node[coordinate] at ($(m15) + (20pt,5pt)$) (m15-ne) {};
+^^I^^I\node[coordinate] at ($(m15-nw) + (-10pt,0)$) (m15-nw-corner) {};
+^^I^^I\node[coordinate] at ($(m15-ne) + (10pt,0)$) (m15-ne-corner) {};
+^^I^^I\node[coordinate] at (m15-nw-corner |- m05.west) (m05-w-corner) {};
+^^I^^I\node[coordinate] at (m15-ne-corner |- m05.east) (m05-e-corner) {};
+^^I^^I
+^^I^^I\draw[dspconn] (m13) -- (m15-sw);
+^^I^^I\draw[dspconn] (m15-se) -- (m17);
+^^I^^I\draw[dspconn] (m15-nw-corner) -- (m15-nw);
+^^I^^I\draw[dspline] (m15-nw-corner) -- (m05-w-corner);
+^^I^^I\draw[dspline] (m05) -- (m05-w-corner);
+^^I^^I\draw[dspline] (m15-ne-corner) -- (m15-ne);
+^^I^^I\draw[dspline] (m15-ne-corner) -- (m05-e-corner);
+^^I^^I\draw[dspconn] (m05-e-corner) -- (m05);
+^^I^^I\draw[dspline] (m16) -- (m26);
+^^I^^I\draw[dspline] (m26) -- (m21);
+^^I^^I\draw[dspconn] (m21) -- (m11);
+^^I^^I%\draw[black!20, ->, out=-90, in=-90, looseness=0.6] ($(m10)+(-0.35, -0.25)$) to node[below, xshift=-22pt] {$STF$} ($(m17)+(0.35, -0.25)$);
+^^I^^I%\draw[RedOrange, ->, out=90, in=180, looseness=1] ($(m10)+(-0.35, 0.25)$) to node[left, xshift=-2pt,yshift=2pt] {$NTF$} ($(m02)+(-0.35, 0.35)$);
+^^I^^I
+^^I\end{tikzpicture}
+^^I\caption{The linearized block diagram with the quantizer replaced by a multiplicative uncertainty extracted via LFT.}
+\end{figure}
 
